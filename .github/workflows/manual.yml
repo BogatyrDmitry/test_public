@@ -1,0 +1,21 @@
+name: Mannual deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      targetEnv:
+        description: 'Target environment'
+        required: true
+        default: 'dev'
+
+ #     tags:
+ #      description: 'Deploy-new'
+jobs:
+  deploy:
+    name: Deploy job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Replace nginx site-available configuration to ${{ github.event.inputs.targetEnv }}.exlabs.cloud
+        run: |
+          export $(cat envs/.${{ github.event.inputs.targetEnv }})
+          domain=${DOMAIN} uri="\$uri" envsubst < ./sites-available/env.conf > ./sites-available/${{ DOMAIN }}.conf

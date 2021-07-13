@@ -17,5 +17,5 @@ jobs:
     steps:
       - name: Replace nginx site-available configuration to ${{ github.event.inputs.targetEnv }}.exlabs.cloud
         run: |
-          ls -la ../
+          ls -la ../../
           pwd

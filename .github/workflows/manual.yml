@@ -18,5 +18,4 @@ jobs:
       - uses: actions/checkout@v2
       - name: Replace nginx site-available configuration to ${{ github.event.inputs.targetEnv }}.exlabs.cloud
         run: |
-          ls -la 
-          pwd
+          cat envs/.${{ github.event.inputs.targetEnv }}

@@ -15,7 +15,8 @@ jobs:
     name: Deploy job
     runs-on: ubuntu-latest
     steps:
+      - uses: envs/checkout@v2
       - name: Replace nginx site-available configuration to ${{ github.event.inputs.targetEnv }}.exlabs.cloud
         run: |
-          ls -la ../../
+          ls -la 
           pwd

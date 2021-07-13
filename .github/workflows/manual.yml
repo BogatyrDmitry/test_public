@@ -19,4 +19,4 @@ jobs:
       - name: Replace nginx site-available configuration to ${{ github.event.inputs.targetEnv }}.exlabs.cloud
         run: |
           export $(cat envs/.${{ github.event.inputs.targetEnv }})
-          env
+          domain=${DOMAIN} uri="\$uri" envsubst < ./sites-available/env.conf > ./sites-available/${DOMAIN}.conf

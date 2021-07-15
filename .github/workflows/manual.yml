@@ -7,16 +7,12 @@ on:
         description: 'Target environment'
         required: true
         default: 'dev'
-
- #     tags:
- #      description: 'Deploy-new'
+  push:
+    branches:
+      - 'main'
 jobs:
   deploy:
     name: Deploy job
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Replace nginx site-available configuration to ${{ github.event.inputs.targetEnv }}.exlabs.cloud
-        run: |
-          export $(cat envs/.${{ github.event.inputs.targetEnv }})
-          domain=${DOMAIN} uri="\$uri" envsubst < ./sites-available/env.conf > ./sites-available/${DOMAIN}.conf
+      - uses: docker/setup-buildx-action@v1

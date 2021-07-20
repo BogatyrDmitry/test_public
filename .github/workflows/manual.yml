@@ -27,4 +27,4 @@ jobs:
         with:
           context: .
           push: false
-          tags: ${{ matrix.node }}
+          tags: ${{ github.event.inputs.targetEnv || matrix.node }}

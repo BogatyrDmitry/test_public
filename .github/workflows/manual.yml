@@ -11,13 +11,13 @@ on:
     branches:
       - 'main'
 
-strategy:
-  matrix:
-    node: [ 'dev', 'test' ]
 jobs:
   deploy:
     name: Deploy job
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ 'dev', 'test' ]
     steps:
       - uses: actions/checkout@v2
 

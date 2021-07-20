@@ -10,6 +10,10 @@ on:
   push:
     branches:
       - 'main'
+
+strategy:
+  matrix:
+    node: [ 'dev', 'test' ]
 jobs:
   deploy:
     name: Deploy job
@@ -23,4 +27,4 @@ jobs:
         with:
           context: .
           push: false
-          tags: test
+          tags: ${{ matrix.node }}
